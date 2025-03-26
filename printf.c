@@ -12,7 +12,8 @@ int _printf(const char *format, ...)
 va_list args;
 unsigned int format_count = 0, lenght = 0, specifier_count;
 int (*print_functions[])(va_list) = {
-print_char, print_string, print_decimal, print_integer, print_percent};
+print_char};
+/*print_string, print_decimal, print_integer, print_percent*/
 char format_specifiers[] = {'c', 's', 'd', 'i', '%'};
 
 if (format == NULL)
