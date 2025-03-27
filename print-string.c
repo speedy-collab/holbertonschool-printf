@@ -10,7 +10,7 @@
 
 int print_string(va_list args)
 {
-char *string = va_args (ars, char *);
+char *string = va_arg (args, char *);
 int count = 0;
 
 if (string == NULL)
@@ -19,7 +19,7 @@ _putchar ('(');
 _putchar ('n');
 _putchar ('u');
 _putchar ('l');
--putchar ('l');
+_putchar ('l');
 _putchar (')');
 return (6);
 }
