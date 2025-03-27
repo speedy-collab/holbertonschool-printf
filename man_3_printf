@@ -1,0 +1,66 @@
+.TH printf 3 "March 27, 2025" "Libc" "Linux Programmer's Manual"
+.SH NAME
+printf \- format and print data to stdout
+
+.SH SYNOPSIS
+.B #include <stdio.h>
+.sp
+.BI "int printf(const char *" format ", ...);"
+
+.SH DESCRIPTION
+The \fBprintf\fP function writes formatted output to stdout.
+It takes a first argument \fIformat\fP which is a string containing text and format specifiers.
+The specifiers are replaced by the values of additional arguments provided.
+
+Common specifiers include:
+.TP
+.B %d, %i
+Signed integer.
+.TP
+.B %u
+Unsigned integer.
+.TP
+.B %f
+Floating-point number.
+.TP
+.B %s
+String of characters.
+.TP
+.B %%
+Literal percent character.
+
+.SH RETURN VALUE
+Upon successful return, the function returns the number of characters printed.
+If an output error is encountered, a negative value is returned.
+
+.SH EXAMPLE
+Here's an example usage:
+.nf
+#include <stdio.h>
+
+int main() {
+    int age = 21;
+    printf("I am %d years old.\n", age);
+    return 0;
+}
+.fi
+
+Expected output:
+.nf
+I am 21 years old.
+.fi
+
+.SH ERRORS
+Errors can occur if:
+.TP
+- The standard output stream (\fBstdout\fP) is closed or inaccessible.
+.TP
+- An internal memory allocation error occurs.
+
+.SH SEE ALSO
+\fBfprintf\fP(3), \fBsprintf\fP(3), \fBscanf\fP(3)
+
+.SH AUTHOR
+Written by Léo and Chris
+
+
