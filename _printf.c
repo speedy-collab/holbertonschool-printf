@@ -14,7 +14,7 @@ const char *i;
 va_start(args, format);
 for (i = format; *i != '\0'; i++)
 {
-if (*i == '%' && (*(i + 1) == 'c' || *(i + 1) == 's' || *(i + 1) == '%'))
+if (*i == '%' && (*(i + 1) == 'c' || *(i + 1) == 's' || *(i + 1) == '%' || *(i + 1) == 'd'))
 {
 i++;
 if (*i == 'c')
@@ -38,6 +38,11 @@ count++;
 else if (*i == '%')
 {
 write(1, "%", 1);
+count++;
+}
+if (*i == 'd')
+{
+write(1, "d", 1);
 count++;
 }
 }
