@@ -15,7 +15,6 @@ int (*print_functions[])(va_list) = {
 print_char};
 /*print_string, print_decimal, print_integer, print_percent*/
 char format_specifiers[] = {'c', 's', 'd', 'i', '%'};
-
 if (format == NULL)
 return (-1);
 va_start(args, format);
