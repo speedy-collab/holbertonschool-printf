@@ -70,7 +70,7 @@ num = num / 10;
 }
 if (is_negative)
 buffer[i++] = '-';
-count = i;
+count = i++;
 while (i > 0)
 write(1, &buffer[--i], 1);
 return (count);
