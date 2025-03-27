@@ -1,51 +1,52 @@
-#include <unistd.h>
-#include <stdarg.h>
 #include "main.h"
-
+#include <stdarg.h>
+#include <unistd.h>
 /**
-* _printf - Prints anything based on the format provided.
-* @format: A list of arguments passed to the function.
-* Return: The total number of characters printed.
-*/
+ * _printf - a simplified version of printf.
+ * @format: the format string.
+ * Return: the number of characters printed.
+ */
 int _printf(const char *format, ...)
 {
+int count = 0;
 va_list args;
-unsigned int format_count = 0, lenght = 0, specifier_count;
-int (*print_functions[])(va_list) = {
-format_char, format_string, format_integer, format_percent};
-char format_specifiers[] = {'c', 's', 'd', 'i', '%'};
-
-if (format == NULL)
-return (-1);
+const char *i;
 va_start(args, format);
-while (format[format_count])
+for (i = format; *i != '\0'; i++)
 {
-if (format[format_count] == '%')
+if (*i == '%' && (*(i + 1) == 'c' || *(i + 1) == 's' || *(i + 1) == '%'))
 {
-format_count++;
-if (format[format_count] == '\0')
+i++;
+if (*i == 'c')
 {
-return (-1); }
-for (specifier_count = 0; specifier_count < 5; specifier_count++)
-{
-if (format[format_count] == format_specifiers[specifier_count])
-{
-lenght += print_functions[specifier_count](args);
-break; }
+char c = (char)va_arg(args, int);
+write(1, &c, 1);
+count++;
 }
-if (specifier_count == 5)
+else if (*i == 's')
 {
-_putchar('%');
-_putchar(format[format_count]);
-lenght += 2;
+char *s = va_arg(args, char *);
+if (s == NULL)
+s = "(null)";
+while (*s)
+{
+write(1, s, 1);
+s++;
+count++;
+}
+}
+else if (*i == '%')
+{
+write(1, "%", 1);
+count++;
 }
 }
 else
 {
-lenght += _putchar(format[format_count]);
+write(1, i, 1);
+count++;
 }
-format_count++;
 }
 va_end(args);
-return (lenght);
+return (count);
 }
