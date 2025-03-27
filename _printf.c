@@ -40,9 +40,8 @@ else if (*i == '%')
 write(1, "%", 1);
 count++;
 }
-if (*i == 'd')
+if (*i == 'd' || *i == 'i')
 {
-write(1, "d", 1);
 count++;
 }
 }
